@@ -3,13 +3,18 @@
 Конфигурационный файл для Telegram бота
 Заполните все необходимые данные перед запуском
 """
+import os
 
 # ============================================
 # ОСНОВНЫЕ НАСТРОЙКИ БОТА
 # ============================================
 
 # Токен вашего бота (получите у @BotFather)
-BOT_TOKEN = "PASTE_YOUR_BOT_TOKEN_HERE"
+# Приоритет: переменная окружения BOT_TOKEN, затем значение в файле.
+BOT_TOKEN = os.getenv("BOT_TOKEN", "PASTE_YOUR_BOT_TOKEN_HERE").strip()
+
+if not BOT_TOKEN or BOT_TOKEN == "PASTE_YOUR_BOT_TOKEN_HERE":
+    raise ValueError("BOT_TOKEN не задан. Укажите переменную окружения BOT_TOKEN на хостинге.")
 
 # ID администратора (ваш Telegram ID)
 # Узнать свой ID можно у @userinfobot
